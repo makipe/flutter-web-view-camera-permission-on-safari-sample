@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>カメラ許可をリクエストするジャンプページ</title>
+    <script>
+        (async () => {
+            try {
+                // 自動でカメラ許可を要求
+                await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            } catch (e) {
+                console.error(e);
+            }
+            // パラメータ next=... で渡された本来の URL へ遷移
+            const next = new URLSearchParams(location.search).get('next');
+            if (next) location.href = next;
+        })();
+    </script>
+</head>
+<body>リダイレクト中...</body>
+</html>
